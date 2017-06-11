@@ -860,6 +860,11 @@ static usbmuxd_device_info_t *device_info_from_device_record(struct usbmuxd_devi
 
 USBMUXD_API int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list)
 {
+	return usbmuxd_get_device_list(device_list, 0)
+}
+
+USBMUXD_API int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list, int usb_connections_only)
+{
 	int sfd;
 	int tag;
 	int listen_success = 0;
@@ -997,7 +1002,7 @@ got_device_list:
 	newlist = (usbmuxd_device_info_t*)malloc(sizeof(usbmuxd_device_info_t) * (collection_count(&tmpdevs) + 1));
 	dev_cnt = 0;
 	FOREACH(usbmuxd_device_info_t *di, &tmpdevs) {
-		if (di && di->product_id != 0) {
+		if (di && (usb_connections_only == 0 || di->product_id != 0)) {
 			memcpy(&newlist[dev_cnt], di, sizeof(usbmuxd_device_info_t));
 			free(di);
 			dev_cnt++;
