@@ -858,11 +858,6 @@ static usbmuxd_device_info_t *device_info_from_device_record(struct usbmuxd_devi
 	return devinfo;
 }
 
-USBMUXD_API int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list)
-{
-	return usbmuxd_get_device_list(device_list, 0)
-}
-
 USBMUXD_API int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list, int usb_connections_only)
 {
 	int sfd;
