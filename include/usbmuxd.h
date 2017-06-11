@@ -87,12 +87,14 @@ int usbmuxd_unsubscribe();
  * @param device_list A pointer to an array of usbmuxd_device_info_t
  *      that will hold records of the connected devices. The last record
  *      is a null-terminated record with all fields set to 0/NULL.
+ * @param usb_connections_only Whether only to return devices that has
+ *		a usb connection to the host.
  * @note The user has to free the list returned.
  *
  * @return number of attached devices, zero on no devices, or negative
  *   if an error occured.
  */
-int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list);
+int usbmuxd_get_device_list(usbmuxd_device_info_t **device_list, int usb_connections_only);
 
 /**
  * Frees the device list returned by an usbmuxd_get_device_list call

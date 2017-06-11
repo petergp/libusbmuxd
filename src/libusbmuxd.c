@@ -1026,7 +1026,7 @@ USBMUXD_API int usbmuxd_get_device_by_udid(const char *udid, usbmuxd_device_info
 	if (!device) {
 		return -EINVAL;
 	}
-	if (usbmuxd_get_device_list(&dev_list) < 0) {
+	if (usbmuxd_get_device_list(&dev_list, 0) < 0) {
 		return -ENODEV;
 	}
 

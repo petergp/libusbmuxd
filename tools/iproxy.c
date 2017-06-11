@@ -173,7 +173,7 @@ static void *acceptor_thread(void *arg)
 
 	cdata = (struct client_data*)arg;
 
-	if ((count = usbmuxd_get_device_list(&dev_list)) < 0) {
+	if ((count = usbmuxd_get_device_list(&dev_list, 0)) < 0) {
 		printf("Connecting to usbmuxd failed, terminating.\n");
 		free(dev_list);
 		if (cdata->fd > 0) {
